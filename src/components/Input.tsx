@@ -4,12 +4,13 @@ import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const inputVariants = cva(
-  `flex h-14 w-full border border-tra-input bg-tra-input-fill px-3 py-2
+  `flex w-full border border-tra-input bg-tra-input-fill px-3 py-2
   hover:shadow-input-hover
   focus-visible:shadow-input-focus focus-visible:outline-none focus-visible:border-1 focus-visible:border-tra-primary-focused 
   disabled:cursor-not-allowed disabled:bg-tra-input-light disabled:text-tra-neutral-grey disabled:placeholder:text-tra-input
   placeholder:text-muted-foreground 
-  file:border-0 file:bg-transparent file:text-sm file:font-medium`,
+  file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-tra-neutral-black file:bg-tra-neutral-disabled-text file:h-fit 
+  file:p-2 file:mr-2 file:rounded-md file:cursor-pointer file:hover:contrast-125 file:transition-all`,
   {
     variants: {
       size: {
@@ -44,6 +45,7 @@ export interface InputProps
   size?: 'default' | 'sm' | 'lg' | undefined;
   startIcon?: React.ReactNode;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];
+  value: string | number;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -55,6 +57,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     size,
     startIcon,
     type,
+    value,
     ...props
   }, ref) => (
     <div className="flex items-center">
@@ -67,6 +70,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         className={cn(inputVariants({ size, error, borderRadius }), className)}
         ref={ref}
+        value={value}
         style={{
           paddingLeft: startIcon ? '2.5rem' : undefined,
           paddingRight: endIcon ? '2.5rem' : undefined,

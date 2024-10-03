@@ -631,6 +631,11 @@ const Home = () => {
             <TextField value={value} onChange={e => setValue(e.target.value)} variant="underlined" size="lg" label="TRA" borderRadius="lg" />
           </div>
         </div>
+        <p className="text-4xl underline mt-2 mb-4">File Input</p>
+        <div className="flex space-x-4">
+          <TextField id="123456" type="file" onChange={e => console.log(e.target.files && e.target?.files[0])} endIcon={<Plus />} />
+          <TextField type="file" id="123" onChange={e => console.log(e.target.files && e.target?.files[0])} />
+        </div>
       </div>
       <div className="mb-6 border-b-2 pb-6">
         <p className="text-4xl underline">Notification</p>
