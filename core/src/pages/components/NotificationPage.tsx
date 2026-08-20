@@ -85,9 +85,58 @@ const NotificationPage = () => {
             value="manual"
             label={t('Manual')}
           >
-            <ComponentSourceViewer componentName="notification" />
+            <div className="space-y-6">
+              <div>
+                <p className="mb-2 text-sm text-neutral-grey">
+                  1. Copy the <code>notification</code> component.
+                </p>
+                <ComponentSourceViewer componentName="notification" />
+              </div>
+              <div>
+                <p className="mb-2 text-sm text-neutral-grey">
+                  2. Copy the notification context provider. It renders the notification stack and
+                  exposes the <code>invoke</code> function that <code>notification.tsx</code> calls
+                  internally, so both files are required.
+                </p>
+                <ComponentSourceViewer
+                  componentName="notification/NotificationProvider"
+                  folder="contexts"
+                />
+              </div>
+              <div>
+                <p className="mb-2 text-sm text-neutral-grey">
+                  3. Copy the notification container that renders individual toasts.
+                </p>
+                <ComponentSourceViewer
+                  componentName="notification/NotificationContainer"
+                  folder="contexts"
+                />
+              </div>
+            </div>
           </Tab>
         </Tabs>
+        <p className="mt-4 text-sm text-neutral-grey">
+          The Notification component reads from a <code>NotificationProvider</code> React context,
+          so your app must be wrapped with it once, near the root, before{' '}
+          <code>Notification()</code> can be used anywhere below it.
+        </p>
+        <CustomSyntaxHighlighter
+          content={`import { NotificationProvider } from '@/contexts/notification/NotificationProvider';
+
+function App() {
+  return (
+    <NotificationProvider>
+      {/* the rest of your app */}
+    </NotificationProvider>
+  );
+}`}
+        />
+        <p className="mt-2 text-sm text-neutral-grey">
+          Running <code>npx tra-ui-cli add notification</code> also copies{' '}
+          <code>contexts/notification/NotificationProvider.tsx</code> and{' '}
+          <code>NotificationContainer.tsx</code> into your project — only the{' '}
+          <code>{'<NotificationProvider>'}</code> wrapper above needs to be added by hand.
+        </p>
       </section>
 
       {/* Usage */}

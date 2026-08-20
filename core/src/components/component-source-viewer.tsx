@@ -6,19 +6,24 @@ import Skeleton from './ui/skeleton';
 interface ComponentSourceViewerProps {
   componentName: string;
   className?: string;
+  folder?: string;
 }
 
-const ComponentSourceViewer = ({ componentName, className }: ComponentSourceViewerProps) => {
+const ComponentSourceViewer = ({
+  componentName,
+  className,
+  folder,
+}: ComponentSourceViewerProps) => {
   const [source, setSource] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setLoading(true);
-    getComponentSource(componentName).then((code) => {
+    getComponentSource(componentName, folder).then((code) => {
       setSource(code);
       setLoading(false);
     });
-  }, [componentName]);
+  }, [componentName, folder]);
 
   if (loading) {
     return (

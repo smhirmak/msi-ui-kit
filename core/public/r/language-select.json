@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "language-select",
-  "type": "registry:ui",
   "title": "Language Select",
   "description": "A language select component that can be used to select a language.",
   "registryDependencies": [
@@ -13,5 +12,6 @@
       "content": "import Select from './select';\r\n\r\nconst countries = [\r\n  {\r\n    content: (\r\n      <img\r\n        src=\"/assets/icons/flagOfTurkey.svg\"\r\n        className=\"overflow-hidden\"\r\n        alt=\"TR\"\r\n        width=\"30px\"\r\n        height=\"20px\"\r\n        title=\"TR\"\r\n      />\r\n    ),\r\n    value: 'tr',\r\n  },\r\n  {\r\n    content: (\r\n      <img\r\n        src=\"/assets/icons/flagOfUK.svg\"\r\n        className=\"overflow-hidden\"\r\n        alt=\"EN\"\r\n        width=\"30px\"\r\n        height=\"20px\"\r\n        title=\"EN\"\r\n      />\r\n    ),\r\n    value: 'en',\r\n  },\r\n];\r\n\r\ninterface ILanguageSelect {\r\n  className?: string;\r\n  locale: string;\r\n  setLocale: (locale: string) => void;\r\n  defaultValue?: string;\r\n}\r\n\r\nconst LanguageSelect: React.FC<ILanguageSelect> = ({\r\n  className,\r\n  locale,\r\n  setLocale,\r\n  defaultValue,\r\n}) => {\r\n  const handleChange = (event: string | string[] | number | number[] | boolean) => {\r\n    const found = countries.find((f) => f.value === event);\r\n    const localeLang = found?.value ?? defaultValue ?? 'en';\r\n    setLocale?.(localeLang);\r\n  };\r\n\r\n  return (\r\n    <div className={className}>\r\n      <Select\r\n        dropdownTriggerClassName=\"border-none\"\r\n        options={countries}\r\n        value={((locale as string) || localStorage.getItem('lang')) ?? defaultValue ?? 'en'}\r\n        onChange={handleChange}\r\n        dropdownItemContainerClassName=\"flex flex-col gap-1\"\r\n        dropdownItemClassName=\"justify-center\"\r\n        hideClearButton\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default LanguageSelect;\r\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

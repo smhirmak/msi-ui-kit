@@ -500,6 +500,30 @@
       ]
     },
     {
+      "name": "notification",
+      "type": "registry:ui",
+      "title": "Notification",
+      "description": "A flexible notification system with multiple themes, animations, and positioning options for displaying user feedback.",
+      "dependencies": ["class-variance-authority", "@phosphor-icons/react"],
+      "registryDependencies": ["@tra-kit/button"],
+      "files": [
+        {
+          "path": "registry/tra-kit/components/notification.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/tra-kit/contexts/notification/NotificationProvider.tsx",
+          "type": "registry:file",
+          "target": "contexts/notification/NotificationProvider.tsx"
+        },
+        {
+          "path": "registry/tra-kit/contexts/notification/NotificationContainer.tsx",
+          "type": "registry:file",
+          "target": "contexts/notification/NotificationContainer.tsx"
+        }
+      ]
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "search-field",
-  "type": "registry:ui",
   "title": "Search Field",
   "description": "A search field component that can be used to enter search queries.",
   "registryDependencies": [
@@ -13,5 +12,6 @@
       "content": "import { MagnifyingGlassIcon } from '@phosphor-icons/react';\r\nimport { cva } from 'class-variance-authority';\r\nimport React from 'react';\r\nimport type { ITextField } from '@/components/ui/text-field';\r\nimport TextField from '@/components/ui/text-field';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst iconVariants = cva('', {\r\n  variants: {\r\n    size: {\r\n      default: 'size-5',\r\n      sm: 'size-4',\r\n      lg: 'size-6',\r\n    },\r\n    disabled: {\r\n      true: 'text-input',\r\n      false: '',\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    size: 'default',\r\n    disabled: false,\r\n  },\r\n});\r\n\r\ntype ISearchField = {\r\n  borderRadius?: 'default' | 'lg';\r\n  disabled?: boolean;\r\n  iconClassName?: string;\r\n  label?: string;\r\n  placeholder?: string;\r\n  size?: 'default' | 'sm' | 'lg';\r\n  type?: React.InputHTMLAttributes<HTMLInputElement>['type'];\r\n  value: string | number;\r\n  variant?: 'filled' | 'outlined' | 'underlined';\r\n  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;\r\n} & Omit<ITextField, 'children'>;\r\n\r\nconst SearchField: React.FC<ISearchField> = ({\r\n  borderRadius,\r\n  disabled,\r\n  iconClassName,\r\n  label,\r\n  onChange,\r\n  placeholder = 'Search',\r\n  size = 'default',\r\n  type = 'text',\r\n  value,\r\n  variant = 'filled',\r\n  ...otherProps\r\n}) => (\r\n  <TextField\r\n    variant={variant}\r\n    label={label ?? 'Search'}\r\n    size={size}\r\n    value={value}\r\n    onChange={onChange}\r\n    disabled={disabled}\r\n    type={type}\r\n    placeholder={placeholder}\r\n    startIcon={\r\n      <MagnifyingGlassIcon className={cn(iconVariants({ size, disabled }), iconClassName)} />\r\n    }\r\n    borderRadius={borderRadius}\r\n    alwaysTop\r\n    {...otherProps}\r\n  />\r\n);\r\n\r\nexport default SearchField;\r\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

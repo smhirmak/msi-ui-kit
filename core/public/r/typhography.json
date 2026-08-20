@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "typhography",
-  "type": "registry:style",
   "title": "TRA UI Typography",
   "description": "Typography design tokens for TRA UI Kit",
   "cssVars": {
@@ -50,5 +49,6 @@
       "text-body-xxs-medium--line-height": "1.4",
       "text-body-xxs-medium--font-weight": "500"
     }
-  }
+  },
+  "type": "registry:style"
 }

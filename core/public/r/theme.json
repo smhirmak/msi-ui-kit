@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme",
-  "type": "registry:style",
   "title": "TRA UI Theme",
   "description": "Complete theme configuration for TRA UI Kit including colors and design tokens",
   "dependencies": [
@@ -157,5 +156,6 @@
       "margin-inline": "auto",
       "padding": "2rem"
     }
-  }
+  },
+  "type": "registry:style"
 }

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "loading-spinner",
-  "type": "registry:ui",
   "title": "Loading Spinner",
   "description": "A loading spinner component that can be used to indicate loading state.",
   "files": [
@@ -10,5 +9,6 @@
       "content": "import { cva } from 'class-variance-authority';\r\nimport * as React from 'react';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst spinnerVariants = cva(\r\n  'size-16 animate-spin rounded-full border-4 border-neutral border-t-primary',\r\n);\r\n\r\ninterface ILoadingSpinner extends React.HTMLAttributes<HTMLDivElement> {\r\n  className?: string;\r\n}\r\n\r\nconst LoadingSpinner = React.forwardRef<HTMLDivElement, ILoadingSpinner>((props, ref) => {\r\n  const { className, ...rest } = props;\r\n  return (\r\n    <div\r\n      ref={ref}\r\n      className={cn(spinnerVariants(), className)}\r\n      {...rest}\r\n    />\r\n  );\r\n});\r\n\r\nLoadingSpinner.displayName = 'LoadingSpinner';\r\n\r\nexport default LoadingSpinner;\r\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "utils",
-  "type": "registry:lib",
   "title": "Utils",
   "description": "Utility functions including cn for class name merging",
   "dependencies": [
@@ -14,5 +13,6 @@
       "content": "import { type ClassValue, clsx } from 'clsx';\r\nimport { twMerge } from 'tailwind-merge';\r\n\r\nexport function cn(...inputs: ClassValue[]) {\r\n  return twMerge(clsx(inputs));\r\n}\r\n\r\nexport const preventScrollShift = {\r\n  lock: () => {\r\n    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;\r\n    document.body.style.overflow = 'hidden';\r\n    document.body.style.paddingRight = `${scrollbarWidth}px`;\r\n  },\r\n\r\n  unlock: () => {\r\n    document.body.style.overflow = '';\r\n    document.body.style.paddingRight = '';\r\n  },\r\n};\r\n",
       "type": "registry:lib"
     }
-  ]
+  ],
+  "type": "registry:lib"
 }

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "badge",
-  "type": "registry:ui",
   "title": "Badge",
   "description": "A badge component that can be used to display small pieces of information.",
   "files": [
@@ -10,5 +9,6 @@
       "content": "import { cva } from 'class-variance-authority';\r\nimport React from 'react';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst badgeVariants = cva(\r\n  'bg-primary text-neutral-white flex w-fit items-center justify-center rounded-full',\r\n  {\r\n    variants: {\r\n      variant: {\r\n        circular: '',\r\n        rectangular: '',\r\n      },\r\n      size: {\r\n        default: 'h-7 min-w-7 p-1.5',\r\n        lg: 'h-10 min-w-10 p-2.5',\r\n        sm: 'h-5 min-w-5 text-xs',\r\n      },\r\n      color: {\r\n        primary: 'bg-primary text-neutral-white',\r\n        secondary: 'bg-secondary text-neutral-white',\r\n        tertiary: 'bg-tertiary text-neutral-white',\r\n        error: 'bg-error text-neutral-white',\r\n        success: 'bg-success text-neutral-white',\r\n        warning: 'bg-warning text-neutral-white',\r\n      },\r\n      text: {\r\n        true: '',\r\n        false: '',\r\n      },\r\n    },\r\n    defaultVariants: {\r\n      variant: 'circular',\r\n      size: 'default',\r\n      color: 'primary',\r\n    },\r\n    compoundVariants: [\r\n      {\r\n        color: 'primary',\r\n        text: true,\r\n        className: 'bg-primary/30 text-primary',\r\n      },\r\n      {\r\n        color: 'secondary',\r\n        text: true,\r\n        className: 'bg-secondary/30 text-secondary',\r\n      },\r\n      {\r\n        color: 'tertiary',\r\n        text: true,\r\n        className: 'bg-tertiary/30 text-tertiary',\r\n      },\r\n      {\r\n        color: 'error',\r\n        text: true,\r\n        className: 'bg-error/30 text-error',\r\n      },\r\n      {\r\n        color: 'success',\r\n        text: true,\r\n        className: 'bg-success/30 text-success',\r\n      },\r\n      {\r\n        color: 'warning',\r\n        text: true,\r\n        className: 'bg-warning/30 text-warning',\r\n      },\r\n    ],\r\n  },\r\n);\r\n\r\ninterface IBadge {\r\n  className?: string;\r\n  color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'success' | 'warning';\r\n  icon?: React.ReactNode;\r\n  size?: 'default' | 'sm' | 'lg';\r\n  text?: string;\r\n  variant?: 'circular' | 'rectangular';\r\n  textClassName?: string;\r\n}\r\n\r\nconst Badge: React.FC<IBadge> = ({\r\n  className,\r\n  color,\r\n  icon,\r\n  size,\r\n  text,\r\n  variant = 'circular',\r\n  textClassName,\r\n}) => (\r\n  <div className={cn(badgeVariants({ variant, size, color, text: !!text }), className)}>\r\n    {icon && <span className={text && 'mr-1'}>{icon}</span>}\r\n    {text && <span className={cn(textClassName, 'p-1 font-medium')}>{text}</span>}\r\n  </div>\r\n);\r\n\r\nexport default Badge;\r\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

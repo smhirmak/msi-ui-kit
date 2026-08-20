@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "loader",
-  "type": "registry:ui",
   "title": "Loader",
   "description": "A loader component that can be used to indicate loading state.",
   "registryDependencies": [
@@ -14,5 +13,6 @@
       "content": "import { createRef, useEffect, useImperativeHandle, useState } from 'react';\r\nimport LoadingSpinner from '@/components/ui/loading-spinner';\r\nimport LoadingLinear from '@/components/ui/loading-linear';\r\nimport { preventScrollShift } from '@/lib/utils';\r\n\r\nexport type LoaderRefType = {\r\n  incLoader: () => void;\r\n  decLoader: () => void;\r\n};\r\n\r\nexport const loaderRef = createRef<LoaderRefType>();\r\n\r\ninterface ILoader {\r\n  className?: string;\r\n  enableScroll?: boolean;\r\n  linearItemClassName?: string;\r\n  variant?: 'circular' | 'linear';\r\n}\r\n\r\nconst Loader: React.FC<ILoader> = ({\r\n  className,\r\n  enableScroll = false,\r\n  linearItemClassName,\r\n  variant = 'circular',\r\n}) => {\r\n  const [counter, setCounter] = useState(0);\r\n  const incLoader = () => {\r\n    setCounter((x) => x + 1);\r\n  };\r\n\r\n  const decLoader = () => {\r\n    setCounter((x) => x - 1);\r\n  };\r\n\r\n  useImperativeHandle(\r\n    loaderRef,\r\n    () => ({\r\n      incLoader,\r\n      decLoader,\r\n    }),\r\n    [],\r\n  );\r\n\r\n  // loader çıktığı zaman kullanıcı ekranda gezinememesi için scroll iptal edildi tercihe göre değiştirilebilir.\r\n  useEffect(() => {\r\n    if (!enableScroll) {\r\n      if (counter > 0) {\r\n        preventScrollShift.lock();\r\n        document.body.style.overflow = 'hidden';\r\n      } else {\r\n        preventScrollShift.unlock();\r\n        document.body.style.overflow = 'auto';\r\n      }\r\n    } else {\r\n      preventScrollShift.unlock();\r\n      document.body.style.overflow = 'auto';\r\n    }\r\n  }, [counter, enableScroll]);\r\n\r\n  return (\r\n    counter > 0 && (\r\n      // eslint-disable-next-line react/jsx-no-useless-fragment\r\n      <>\r\n        {variant === 'circular' ? (\r\n          <div className=\"z-9999 fixed left-0 top-0 flex h-screen w-screen items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75\">\r\n            <LoadingSpinner className={className} />\r\n          </div>\r\n        ) : (\r\n          <div className=\"z-9999 fixed left-0 top-0 h-screen w-screen backdrop-brightness-50 dark:backdrop-brightness-75\">\r\n            <LoadingLinear\r\n              linearContainerClassName={className}\r\n              linearItemClassName={linearItemClassName}\r\n            />\r\n          </div>\r\n        )}\r\n      </>\r\n    )\r\n  );\r\n};\r\n\r\nexport default Loader;\r\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }
